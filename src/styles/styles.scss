@@ -1,0 +1,254 @@
+// Mixin
+@mixin flex($justify: center, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin flex-center {
+  @include flex(center, center);
+}
+
+@mixin auto {
+  width: 100%;
+  height: auto;
+}
+
+// Style global
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.content-nav {
+  @include flex-center;
+  @include auto;
+  flex-wrap: wrap;
+  background-color: #000;
+  height: 91px;
+  z-index: 10;
+  position: relative;
+
+  .content-logo {
+    @include auto;
+    @include flex(start);
+    width: 20%;
+
+    img {
+      cursor: pointer;
+      margin-left: 2em;
+    }
+  }
+
+  .content-nav {
+    @include auto;
+    @include flex-center;
+    flex-wrap: wrap;
+    width: 80%;
+
+    ul {
+      @include auto;
+      display: flex;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      li {
+        color: #fff;
+        text-align: center;
+        flex-grow: 1;
+        font-weight: 500;
+        font-size: 20px;
+        cursor: pointer;
+        a {
+          text-decoration: none;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+// navbar
+
+.content-navbar {
+  @include auto;
+  @include flex-center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 117px;
+  height: 100vh;
+  background-color: #000;
+  color: #fff;
+  z-index: 3;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .content-icones {
+    @include flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 1em;
+
+    img {
+      cursor: pointer;
+    }
+  }
+
+  .content-copyright {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg);
+    writing-mode: vertical-rl;
+    text-align: center;
+
+    p {
+      color: #fff;
+      margin: 0;
+      font-size: 12px;
+    }
+  }
+}
+
+// front
+
+.content-front {
+  @include flex(space-between);
+  @include auto;
+  flex-direction: column;
+  height: 90vh;
+  z-index: 2;
+  .content-message {
+    @include auto;
+    @include flex(flex-start, start);
+    flex-direction: column;
+
+    .hello {
+      color: red;
+    }
+    h1 {
+      margin-left: 8em;
+      margin-bottom: 0;
+      margin-top: 2em;
+    }
+    p {
+      margin-left: 16em;
+    }
+  }
+  .content-graphs {
+    @include auto;
+    @include flex;
+    flex-grow: 1;
+    gap: 4em;
+    .content-graphone {
+      @include auto;
+      @include flex;
+      width: 80%;
+      height: 65vh;
+      flex-direction: column;
+      gap: 2em;
+      margin-left: 16em;
+      .content-activity {
+        @include auto;
+        @include flex;
+        height: 300px;
+        background-color: #fbfbfb;
+      }
+      .cards {
+        @include auto;
+        @include flex(space-evenly);
+        height: 200px;
+        gap: 3em;
+        .performance-chart {
+          width: 33%;
+          height: auto;
+        }
+        .radar-chart {
+          width: 33%;
+          height: auto;
+        }
+        .score-card {
+          width: 33%;
+          height: auto;
+          background-color: #fbfbfb;
+          position: relative;
+          h2 {
+            text-align: center;
+            font-size: 14px;
+            position: absolute;
+            top: 10%;
+            left: 20%;
+            transform: translateX(-50%);
+            margin: 0;
+            color: #000;
+          }
+        }
+      }
+    }
+    .content-graphtwo {
+      @include auto;
+      @include flex;
+      width: 20%;
+      height: 65vh;
+      margin-right: 5em;
+      .cardsid-container {
+        @include auto;
+        @include flex;
+        flex-direction: column;
+        gap: 2em;
+        .card {
+          @include flex;
+          height: 124px;
+          width: 100%;
+          background-color: #fbfbfb;
+          border-radius: 10px;
+          gap: 2em;
+          padding: 1em;
+          .card-icon {
+            @include flex;
+            width: 60px;
+            height: 60px;
+            border-radius: 6px;
+          }
+          .bg-energy {
+            background-color: rgba(255, 0, 0, 0.2);
+          }
+
+          .bg-proteins {
+            background-color: rgba(70, 91, 255, 0.2);
+          }
+
+          .bg-carbs {
+            background-color: rgba(245, 255, 101, 0.2);
+          }
+
+          .bg-lipids {
+            background-color: rgba(255, 90, 244, 0.2);
+          }
+          .card-txt {
+            @include flex;
+            flex-direction: column;
+            gap: 0.5em;
+            span {
+              font-size: 18px;
+              font-weight: 600;
+            }
+            p {
+              margin: 0;
+              color: #74798c;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// style pour recharts
+
+.recharts-default-legend {
+  margin-bottom: 2em !important;
+  margin-top: 1.3em !important;
+}

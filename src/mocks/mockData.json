@@ -1,0 +1,31 @@
+{
+    "user": {
+      "id": 12,
+      "name": "John Doe",
+      "age": 29,
+      "country": "USA"
+    },
+    "activities": [
+      {
+        "date": "2022-07-01",
+        "kilogram": 70,
+        "calories": 300
+      },
+      {
+        "date": "2022-07-02",
+        "kilogram": 71,
+        "calories": 350
+      }
+    ],
+    "sessions": [
+      {
+        "day": "2022-07-01",
+        "sessions": 3
+      },
+      {
+        "day": "2022-07-02",
+        "sessions": 2
+      }
+    ]
+  }
+  
