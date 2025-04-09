@@ -11,9 +11,9 @@ function Front({
   userPerformance,
   userAverageSessions,
 }) {
-  const firstName = userData?.data?.userInfos?.firstName || "Nom inconnu";
-  const score = userData?.data?.todayScore ?? userData?.data?.score;
-  const cardsid = userData?.data?.keyData || "Cards inconnues";
+  const firstName = userData?.userInfos?.firstName || "Nom inconnu";
+  const score = userData?.todayScore ?? userData?.score;
+  const cardsid = userData?.keyData || "Cards inconnues";
 
   const congratulationsMessage =
     score > 0.5

@@ -3,7 +3,6 @@ import {
   fetchUserActivities,
   fetchUserSessions,
   fetchUserPerformance,
-  fetchUserKeyMetrics,
 } from "../mocks/mockAPI";
 
 import {
@@ -11,12 +10,12 @@ import {
   getUserActivityFromApi,
   getUserAverageSessionsFromApi,
   getUserPerformanceFromApi,
-  getUserKeyMetricsFromApi,
 } from "../api";
 
 
 export const getUserData = async (userId) => {
-  if (import.meta.env.VITE_IS_MOCKED_DATA) {
+  console.log(import.meta.env.VITE_IS_MOCKED_DATA);
+  if (import.meta.env.VITE_IS_MOCKED_DATA == "true") {
     return await fetchUserData()
   }
   else {
@@ -25,7 +24,7 @@ export const getUserData = async (userId) => {
 };
 
 export const getUserActivity = async (userId) => {
-  if (import.meta.env.VITE_IS_MOCKED_DATA) {
+  if (import.meta.env.VITE_IS_MOCKED_DATA == "true") {
     return await fetchUserActivities()
   }
   else {
@@ -34,7 +33,7 @@ export const getUserActivity = async (userId) => {
 };
 
 export const getUserAverageSessions = async (userId) => {
-  if (import.meta.env.VITE_IS_MOCKED_DATA) {
+  if (import.meta.env.VITE_IS_MOCKED_DATA == "true") {
     return await fetchUserSessions()
   }
   else {
@@ -43,7 +42,7 @@ export const getUserAverageSessions = async (userId) => {
 };
 
 export const getUserPerformance = async (userId) => {
-  if (import.meta.env.VITE_IS_MOCKED_DATA) {
+  if (import.meta.env.VITE_IS_MOCKED_DATA == "true") {
     return await fetchUserPerformance()
   }
   else {

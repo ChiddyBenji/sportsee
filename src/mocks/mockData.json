@@ -1,31 +1,127 @@
 {
     "user": {
-      "id": 12,
-      "name": "John Doe",
-      "age": 29,
-      "country": "USA"
+        "id": 24,
+        "userInfos": {
+            "firstName": "Lucas",
+            "lastName": "Morel",
+            "age": 28
+        },
+        "todayScore": 0.85,
+        "keyData": {
+            "calorieCount": 2200,
+            "proteinCount": 120,
+            "carbohydrateCount": 310,
+            "lipidCount": 70
+        }
     },
-    "activities": [
-      {
-        "date": "2022-07-01",
-        "kilogram": 70,
-        "calories": 300
-      },
-      {
-        "date": "2022-07-02",
-        "kilogram": 71,
-        "calories": 350
-      }
-    ],
-    "sessions": [
-      {
-        "day": "2022-07-01",
-        "sessions": 3
-      },
-      {
-        "day": "2022-07-02",
-        "sessions": 2
-      }
-    ]
-  }
-  
+    
+    "performance": {
+        "kind": {
+            "1": "cardio",
+            "2": "energy",
+            "3": "endurance",
+            "4": "strength",
+            "5": "speed",
+            "6": "intensity"
+        },
+        "data": [
+            {
+                "value": 90,
+                "kind": 1
+            },
+            {
+                "value": 110,
+                "kind": 2
+            },
+            {
+                "value": 130,
+                "kind": 3
+            },
+            {
+                "value": 70,
+                "kind": 4
+            },
+            {
+                "value": 180,
+                "kind": 5
+            },
+            {
+                "value": 100,
+                "kind": 6
+            }
+        ]
+    },
+    
+    "activities": {
+        "sessions": [
+            {
+                "day": "2020-07-01",
+                "kilogram": 80,
+                "calories": 240
+            },
+            {
+                "day": "2020-07-02",
+                "kilogram": 80,
+                "calories": 220
+            },
+            {
+                "day": "2020-07-03",
+                "kilogram": 81,
+                "calories": 280
+            },
+            {
+                "day": "2020-07-04",
+                "kilogram": 81,
+                "calories": 290
+            },
+            {
+                "day": "2020-07-05",
+                "kilogram": 80,
+                "calories": 160
+            },
+            {
+                "day": "2020-07-06",
+                "kilogram": 78,
+                "calories": 162
+            },
+            {
+                "day": "2020-07-07",
+                "kilogram": 76,
+                "calories": 390
+            }
+        ]
+    },
+
+    "sessions": {
+        "sessions": [
+            {
+                "day": 1,
+                "sessionLength": 30
+            },
+            {
+                "day": 2,
+                "sessionLength": 25
+            },
+            {
+                "day": 3,
+                "sessionLength": 45
+            },
+            {
+                "day": 4,
+                "sessionLength": 50
+            },
+            {
+                "day": 5,
+                "sessionLength": 0
+            },
+            {
+                "day": 6,
+                "sessionLength": 0
+            },
+            {
+                "day": 7,
+                "sessionLength": 60
+            }
+        ]
+    }
+}

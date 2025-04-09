@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
-  getUserDataFromApi,
-  getUserActivityFromApi,
-  getUserAverageSessionsFromApi,
-  getUserPerformanceFromApi,
-} from "./api";
+  getUserData,
+  getUserActivity,
+  getUserAverageSessions,
+  getUserPerformance,
+} from "./service/userdata";
 
 import Nav from "./components/nav";
 import NavBar from "./components/navbar";
@@ -26,29 +26,19 @@ function App() {
 
     const fetchData = async () => {
       try {
-        const userDataResponse = await getUserDataFromApi(id);
-        const userActivityResponse = await getUserActivityFromApi(id);
-        const userAverageSessionsResponse = await getUserAverageSessionsFromApi(id);
-        const userPerformanceResponse = await getUserPerformanceFromApi(id);
+        const userDataResponse = await getUserData(id);
 
-        console.log("Données utilisateur récupérées :", userDataResponse);
+        const userActivityResponse = await getUserActivity(id);
+        const userAverageSessionsResponse = await getUserAverageSessions(id);
+        const userPerformanceResponse = await getUserPerformance(id);
+
         setUserData(userDataResponse);
 
-        console.log("Données d'activité récupérées :", userActivityResponse);
-        setUserActivity(userActivityResponse?.data);
+        setUserActivity(userActivityResponse);
 
-        console.log(
-          "Données de sessions moyennes récupérées :",
-          userAverageSessionsResponse
-        );
-        setUserAverageSessions(userAverageSessionsResponse?.data);
+        setUserAverageSessions(userAverageSessionsResponse);
 
-        console.log(
-          "Données de performance récupérées :",
-          userPerformanceResponse
-        );
-        setUserPerformance(userPerformanceResponse?.data);
-
+        setUserPerformance(userPerformanceResponse.data || userPerformanceResponse);
       } catch (error) {
         console.error("Erreur lors de la récupération des données :", error);
       }

@@ -12,18 +12,18 @@ import {
 
 function Activity({ activityData, title }) {
   const sessions = activityData?.sessions || activityData?.value;
-
   if (!sessions || sessions.length === 0) {
     return <div>Pas de données disponibles</div>;
   }
+  const SCALE_FACTOR = 2;
+  const SCALE_KILOGRAMS = 1;
 
   const data = sessions.map((session, index) => ({
     index: index + 1,
-    kilogram: session.kilogram ?? 0,
-    calories: session.calories ?? 0,
+    kilogram: (session.kilogram ?? 0) * SCALE_KILOGRAMS,
+    calories: (session.calories ?? 0) * SCALE_FACTOR,
+    realCalories: session.calories ?? 0,
   }));
-
-  const maxKilogram = Math.max(...sessions.map((session) => session.kilogram));
 
   return (
     <ResponsiveContainer width="100%" height={300}>
@@ -32,14 +32,19 @@ function Activity({ activityData, title }) {
         <XAxis dataKey="index" />
 
         <YAxis
+          yAxisId="right"
+          dataKey="kilogram"
           orientation="right"
-          domain={[0, maxKilogram + 10]}
+          domain={[69, "dataMax + 50"]}
+          tick={{ fill: "#000" }}
         />
+
+        <YAxis yAxisId="left" hide={true} domain={[0, "dataMax + 200"]} />
 
         <Tooltip
           content={({ active, payload }) => {
             if (active && payload && payload.length) {
-              const { kilogram, calories } = payload[0].payload;
+              const { kilogram, realCalories } = payload[0].payload;
               return (
                 <div
                   style={{
@@ -50,7 +55,7 @@ function Activity({ activityData, title }) {
                   }}
                 >
                   <p style={{ margin: 0 }}>{kilogram} kg</p>
-                  <p style={{ margin: 0 }}>{calories} kCal</p>
+                  <p style={{ margin: 0 }}>{realCalories} kCal</p>
                 </div>
               );
             }
@@ -65,13 +70,19 @@ function Activity({ activityData, title }) {
           iconType="circle"
           payload={[
             {
-              value: <span style={{ color: "#000" }}>Poids (kg)</span>,
+              value: (
+                <span className="legend-text" style={{ color: "#000" }}>
+                  Poids (kg)
+                </span>
+              ),
               type: "circle",
               color: "#000000",
             },
             {
               value: (
-                <span style={{ color: "#000" }}>Calories brûlées (kCal)</span>
+                <span className="legend-text" style={{ color: "#000" }}>
+                  Calories brûlées (kCal)
+                </span>
               ),
               type: "circle",
               color: "#FF0000",
@@ -80,6 +91,7 @@ function Activity({ activityData, title }) {
         />
 
         <text
+          className="dynamic-text"
           x={20}
           y={40}
           textAnchor="start"
@@ -95,12 +107,15 @@ function Activity({ activityData, title }) {
           fill="#000000"
           barSize={10}
           radius={[10, 10, 0, 0]}
+          yAxisId="right"
         />
+
         <Bar
           dataKey="calories"
           fill="#FF0000"
           barSize={10}
           radius={[10, 10, 0, 0]}
+          yAxisId="left"
         />
       </BarChart>
     </ResponsiveContainer>

@@ -6,7 +6,6 @@ import cheeseburger from "../images/cheeseburger.svg";
 
 function Cardsid({ activityData }) {
   if (!activityData) {
-    console.log("Aucune donnée reçue pour activityData.");
     return <p>Aucune donnée disponible.</p>;
   }
   const formatValue = (value, unit) => {

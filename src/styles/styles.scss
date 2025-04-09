@@ -161,6 +161,7 @@ body {
         @include flex(space-evenly);
         height: 200px;
         gap: 3em;
+        margin-top: 2em;
         .performance-chart {
           width: 33%;
           height: auto;
@@ -198,6 +199,7 @@ body {
         @include flex;
         flex-direction: column;
         gap: 2em;
+        height: 70vh;
         .card {
           @include flex;
           height: 124px;
@@ -251,4 +253,32 @@ body {
 .recharts-default-legend {
   margin-bottom: 2em !important;
   margin-top: 1.3em !important;
+}
+
+.performance-chart {
+  height: 200px;
+}
+
+@media (max-width: 1600px) {
+  .dynamic-text {
+    font-size: 14px !important;
+  }
+}
+
+@media (min-width: 1601px) {
+  .dynamic-text {
+    font-size: 18px !important;
+  }
+}
+
+@media (max-width: 1600px) {
+  .legend-text {
+    font-size: 12px !important;
+  }
+}
+
+@media (min-width: 1601px) {
+  .legend-text {
+    font-size: 16px !important;
+  }
 }

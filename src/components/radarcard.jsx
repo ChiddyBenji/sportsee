@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   RadarChart,
   Radar,
@@ -27,6 +27,22 @@ function Radarcard({ activityData }) {
     value: item.value,
   }));
 
+  const [fontSize, setFontSize] = useState(window.innerWidth < 1600 ? 12 : 16);
+  const [chartWidth, setChartWidth] = useState(
+    window.innerWidth < 1600 ? "100%" : "33%"
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setFontSize(window.innerWidth < 1600 ? 9 : 16);
+      setChartWidth(window.innerWidth < 1600 ? "33%" : "33%");
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div
       className="radar-chart"
@@ -34,17 +50,16 @@ function Radarcard({ activityData }) {
         backgroundColor: "#282D30",
         padding: "20px",
         borderRadius: "5px",
+        width: chartWidth,
       }}
     >
-      <ResponsiveContainer width="100%" height={160}>
+      <ResponsiveContainer width="100%" height={225}>
         <RadarChart outerRadius="80%" data={formattedData}>
-          {/* Supprime les lignes radiales */}
           <PolarGrid stroke="#fff" radialLines={false} />
-          {/* Garde les mots mais sans ligne qui les relie */}
           <PolarAngleAxis
             dataKey="activity"
             stroke="transparent"
-            tick={{ fill: "#fff" }}
+            tick={{ fill: "#fff", fontSize }}
           />
           <PolarRadiusAxis stroke="transparent" tick={false} axisLine={false} />
           <Radar

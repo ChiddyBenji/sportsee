@@ -18,7 +18,7 @@ function Score({ score }) {
     <div className="score-card">
       <h2>Score</h2>
 
-      <ResponsiveContainer width="100%" height={200}>
+      <ResponsiveContainer width="100%" height={263}>
         <RadialBarChart
           innerRadius="60%"
           outerRadius="50%"
@@ -36,7 +36,7 @@ function Score({ score }) {
         </RadialBarChart>
       </ResponsiveContainer>
 
-      <div
+      <div className="center-txt"
         style={{
           position: "absolute",
           top: "50%",
@@ -47,12 +47,12 @@ function Score({ score }) {
           backgroundColor: "white",
           padding: "5px 10px",
           borderRadius: "50%",
-          width: "60px",
-          height: "70px",
+          width: "85px",
+          height: "95px",
           textAlign: "center",
         }}
       >
-        {scorePercentage}% <br /> de votre objectif
+        <p><span style={{ fontWeight: 600 }}>{scorePercentage}%</span> <br /> de votre objectif</p>
       </div>
     </div>
   );
