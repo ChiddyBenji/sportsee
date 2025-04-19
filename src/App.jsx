@@ -18,10 +18,12 @@ function App() {
   const [userActivity, setUserActivity] = useState(null);
   const [userAverageSessions, setUserAverageSessions] = useState(null);
   const [userPerformance, setUserPerformance] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!id) {
-      return <p>Identifiant utilisateur manquant.</p>;
+      setError("Identifiant utilisateur manquant.");
+      return;
     }
 
     const fetchData = async () => {
@@ -38,9 +40,12 @@ function App() {
 
         setUserAverageSessions(userAverageSessionsResponse);
 
-        setUserPerformance(userPerformanceResponse.data || userPerformanceResponse);
+        setUserPerformance(
+          userPerformanceResponse.data || userPerformanceResponse
+        );
       } catch (error) {
         console.error("Erreur lors de la récupération des données :", error);
+        setError("Un problème est survenu. Le serveur sera bientôt de nouveau disponible.");
       }
     };
 
@@ -51,7 +56,9 @@ function App() {
     <div>
       <Nav userData={userData} />
       <NavBar />
-      {userData ? (
+      {error ? (
+        <p className="error-message">{error}</p>
+      ) : userData ? (
         <Front
           userData={userData}
           userActivity={userActivity}
